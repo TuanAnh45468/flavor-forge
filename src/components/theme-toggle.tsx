@@ -1,7 +1,7 @@
 'use client'
 
 import styled from 'styled-components';
-import { useTheme } from '@/providers/theme-provider';
+import { useThemeStore } from '@/stores';
 import { Button } from '@/components/button/button';
 
 const Container = styled.div`
@@ -18,7 +18,7 @@ const ThemeInfo = styled.div`
 `;
 
 export const ThemeToggle = () => {
-  const { toggleTheme, themeMode, theme } = useTheme();
+  const { toggleTheme, themeMode, theme } = useThemeStore();
 
   return (
     <Container>
