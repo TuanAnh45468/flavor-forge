@@ -29,7 +29,7 @@ export const ThemeToggle = () => {
         <p>Primary: {theme.colors.primary}</p>
       </ThemeInfo>
       
-      <Button onClick={toggleTheme} variant="primary">
+      <Button onClick={toggleTheme} variant="primary" size="md">
         Switch to {themeMode === 'light' ? 'Dark' : 'Light'} Theme
       </Button>
       

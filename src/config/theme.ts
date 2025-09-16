@@ -30,8 +30,8 @@ export const typography = {
     extraBold: 800,
   },
   fontSize: {
-    h1: 48,
-    body: 16,
+    h1: '48px',
+    body: '16px',
   },
   lineHeight: {
     h1: 1.6,
@@ -40,18 +40,18 @@ export const typography = {
 } as const;
 
 export const spacing = {
-  xs: 12,
-  sm: 16,
-  md: 24,
-  lg: 40,
-  xl: 60,
-  xxl: 80,
-  xxxl: 140,
-  xxxxl: 200,
+  xs: '12px',
+  sm: '16px',
+  md: '24px',
+  lg: '40px',
+  xl: '60px',
+  xxl: '80px',
+  xxxl: '140px',
+  xxxxl: '200px',
 } as const;
 
 export const borderRadius = {
-  default: 32,
+  default: '32px',
 } as const;
 
 export const lightTheme = {

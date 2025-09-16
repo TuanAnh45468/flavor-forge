@@ -8,7 +8,7 @@ export type ThemeStore = {
     setThemeMode: (mode: 'light' | 'dark') => void
     theme: DefaultTheme
 }
-
+// todo use zustand persisted state
 export const useThemeStore = create<ThemeStore>((set, get) => ({
     themeMode: 'light',
     toggleTheme: () => set((state) => {

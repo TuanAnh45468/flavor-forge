@@ -12,7 +12,7 @@ import { useThemeStore } from "@/stores";
 type AppProviderProps = {
     children: React.ReactNode
 }
-
+//todo plan the project with functional, non-functional, and technical requirements, model, schema, make a plan
 export const AppProvider = ({ children }: AppProviderProps) => {
     const theme = useThemeStore(state => state.theme);
 
