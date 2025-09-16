@@ -1,8 +1,16 @@
 import type { Preview } from "@storybook/nextjs-vite";
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { withThemeFromJSXProvider } from '@storybook/addon-themes';
 
 import { lightTheme, darkTheme } from "../src/config/theme";
+
+const GlobalStyles = createGlobalStyle<{ theme: typeof lightTheme }>`
+  body {
+    font-family: "Urbanist", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: ${props => props.theme.colors?.background || '#FFFFFF'};
+    color: ${props => props.theme.colors?.text || '#212121'};
+  }
+`;
 
 const preview: Preview = {
   parameters: {
@@ -21,23 +29,9 @@ const preview: Preview = {
           },
           defaultTheme: 'light',
           Provider: ThemeProvider,
+          GlobalStyles: GlobalStyles,
       }),
   ],
-  globalTypes: {
-    theme: {
-      description: 'Global theme for components',
-      defaultValue: 'light',
-      toolbar: {
-        title: 'Theme',
-        icon: 'circlehollow',
-        items: [
-          { value: 'light', title: 'Light' },
-          { value: 'dark', title: 'Dark' },
-        ],
-        dynamicTitle: true,
-      },
-    },
-  },
 };
 
 export default preview;
