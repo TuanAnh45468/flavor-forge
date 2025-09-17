@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "eslint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prettier": "prettier \"**/*.+(json|ts|tsx)\"",
+    "format:check": "npm run prettier -- --check",
+    "format:fix": "npm run prettier -- --write"
   },
   "dependencies": {
     "@storybook/addon-themes": "^9.1.6",
@@ -40,6 +43,7 @@
     "playwright": "^1.55.0",
     "storybook": "^9.1.6",
     "typescript": "^5",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "prettier": "^3.6.2"
   }
 }
