@@ -1,7 +1,7 @@
-import 'styled-components';
-import { colors, typography, spacing, borderRadius } from '@/config/theme';
+import "styled-components";
+import { colors, typography, spacing, borderRadius } from "@/config/theme";
 
-declare module 'styled-components' {
+declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
       primary: string;
@@ -15,6 +15,6 @@ declare module 'styled-components' {
     typography: typeof typography;
     spacing: typeof spacing;
     borderRadius: typeof borderRadius;
-    variant?: 'primary' | 'secondary'
+    variant?: "primary" | "secondary";
   }
 }

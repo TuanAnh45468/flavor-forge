@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React from "react";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
@@ -10,20 +10,23 @@ import { ErrorBoundary } from "react-error-boundary";
 import { useThemeStore } from "@/stores";
 
 type AppProviderProps = {
-    children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 //todo plan the project with functional, non-functional, and technical requirements, model, schema, make a plan
 export const AppProvider = ({ children }: AppProviderProps) => {
-    const theme = useThemeStore(state => state.theme);
+  const theme = useThemeStore((state) => state.theme);
 
-    return (
-        <StyledThemeProvider theme={theme}>
-            <QueryClientProvider client={queryClient}>
-                {IS_DEVELOPMENT && (<ReactQueryDevtools initialIsOpen={false} />)}
-                <ErrorBoundary fallback={<div>Something went wrong</div>} onError={console.error}>
-                    {children}
-                </ErrorBoundary>
-            </QueryClientProvider>
-        </StyledThemeProvider>
-    )
-}
+  return (
+    <StyledThemeProvider theme={theme}>
+      <QueryClientProvider client={queryClient}>
+        {IS_DEVELOPMENT && <ReactQueryDevtools initialIsOpen={false} />}
+        <ErrorBoundary
+          fallback={<div>Something went wrong</div>}
+          onError={console.error}
+        >
+          {children}
+        </ErrorBoundary>
+      </QueryClientProvider>
+    </StyledThemeProvider>
+  );
+};

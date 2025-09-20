@@ -1,20 +1,20 @@
-'use client'
+"use client";
 
-import styled from 'styled-components';
-import { useThemeStore } from '@/stores';
-import { Button } from '@/components/button/button';
+import styled from "styled-components";
+import { useThemeStore } from "@/stores";
+import { Button } from "@/components/button/button";
 
 const Container = styled.div`
-  padding: ${props => props.theme.spacing.lg}px;
-  background-color: ${props => props.theme.colors.background};
-  color: ${props => props.theme.colors.text};
+  padding: ${(props) => props.theme.spacing.lg}px;
+  background-color: ${(props) => props.theme.colors.background};
+  color: ${(props) => props.theme.colors.text};
   min-height: 100vh;
   transition: all 0.3s ease;
 `;
 
 const ThemeInfo = styled.div`
-  margin-bottom: ${props => props.theme.spacing.md}px;
-  font-family: ${props => props.theme.typography.fontFamily.primary};
+  margin-bottom: ${(props) => props.theme.spacing.md}px;
+  font-family: ${(props) => props.theme.typography.fontFamily.primary};
 `;
 
 export const ThemeToggle = () => {
@@ -28,12 +28,12 @@ export const ThemeToggle = () => {
         <p>Text: {theme.colors.text}</p>
         <p>Primary: {theme.colors.primary}</p>
       </ThemeInfo>
-      
+
       <Button onClick={toggleTheme} variant="primary" size="md">
-        Switch to {themeMode === 'light' ? 'Dark' : 'Light'} Theme
+        Switch to {themeMode === "light" ? "Dark" : "Light"} Theme
       </Button>
-      
-      <div style={{ marginTop: '20px' }}>
+
+      <div style={{ marginTop: "20px" }}>
         <Button variant="secondary">Secondary Button</Button>
       </div>
     </Container>

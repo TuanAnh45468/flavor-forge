@@ -1,28 +1,32 @@
 export const colors = {
   primary: {
-    900: '#F5484A',
+    900: "#F5484A",
   },
   secondary: {
-    900: '#FF9800',
+    900: "#FF9800",
   },
   greyscale: {
-    50: '#FAFAFA',
-    900: '#212121',
+    50: "#FAFAFA",
+    100: "#F5F5F5",
+    200: "#EEEEEE",
+    500: "#9E9E9E",
+    900: "#212121",
   },
   dark: {
-    1: '#181A20',
-    2: '#1F222A',
-    3: '#262A35',
+    1: "#181A20",
+    2: "#1F222A",
+    3: "#262A35",
+    4: "#35383F",
   },
   others: {
-    white: '#FFFFFF',
+    white: "#FFFFFF",
   },
 } as const;
 
 export const typography = {
   fontFamily: {
-    primary: 'Urbanist, sans-serif',
-    secondary: 'Poppins, sans-serif',
+    primary: "Urbanist, sans-serif",
+    secondary: "Poppins, sans-serif",
   },
   fontWeight: {
     regular: 400,
@@ -30,8 +34,8 @@ export const typography = {
     extraBold: 800,
   },
   fontSize: {
-    h1: '48px',
-    body: '16px',
+    h1: "48px",
+    body: "16px",
   },
   lineHeight: {
     h1: 1.6,
@@ -40,18 +44,18 @@ export const typography = {
 } as const;
 
 export const spacing = {
-  xs: '12px',
-  sm: '16px',
-  md: '24px',
-  lg: '40px',
-  xl: '60px',
-  xxl: '80px',
-  xxxl: '140px',
-  xxxxl: '200px',
+  xs: "12px",
+  sm: "16px",
+  md: "24px",
+  lg: "40px",
+  xl: "60px",
+  xxl: "80px",
+  xxxl: "140px",
+  xxxxl: "200px",
 } as const;
 
 export const borderRadius = {
-  default: '32px',
+  default: "32px",
 } as const;
 
 export const lightTheme = {
