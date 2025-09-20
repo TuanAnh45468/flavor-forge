@@ -69,7 +69,7 @@ const sizes = {
   `,
 };
 
-export const Button = styled.button<ButtonProps>`
+const StyledButton = styled.button<ButtonProps>`
   border-radius: ${(props) => props.theme.borderRadius?.default || 8};
   font-family: ${(props) =>
     props.theme.typography?.fontFamily?.primary || "inherit"};
@@ -84,3 +84,25 @@ export const Button = styled.button<ButtonProps>`
   ${(props) => sizes[props.size || "md"](props.theme)}
   ${(props) => variants[props.variant || "primary"](props.theme)}
 `;
+
+const IconWrapper = styled.span<{ position: "left" | "right" }>`
+  display: inline-flex;
+  align-items: center;
+  margin-left: ${(props) => (props.position === "right" ? "8px" : "0")};
+  margin-right: ${(props) => (props.position === "left" ? "8px" : "0")};
+`;
+
+export const Button: React.FC<ButtonProps> = ({
+  children,
+  leftIcon,
+  rightIcon,
+  ...props
+}) => {
+  return (
+    <StyledButton {...props}>
+      {leftIcon && <IconWrapper position="left">{leftIcon}</IconWrapper>}
+      {children}
+      {rightIcon && <IconWrapper position="right">{rightIcon}</IconWrapper>}
+    </StyledButton>
+  );
+};

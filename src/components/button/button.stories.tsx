@@ -65,3 +65,28 @@ export const Large: Story = {
     children: "Large Button",
   },
 };
+
+export const WithLeftIcon: Story = {
+  args: {
+    variant: "primary",
+    children: "With Left Icon",
+    leftIcon: <span>📋</span>,
+  },
+};
+
+export const WithRightIcon: Story = {
+  args: {
+    variant: "secondary",
+    children: "With Right Icon",
+    rightIcon: <span>➡️</span>,
+  },
+};
+
+export const WithBothIcons: Story = {
+  args: {
+    variant: "outline",
+    children: "Both Icons",
+    leftIcon: <span>⚙️</span>,
+    rightIcon: <span>✓</span>,
+  },
+};
