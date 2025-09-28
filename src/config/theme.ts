@@ -1,5 +1,6 @@
 export const colors = {
   primary: {
+    50: "#FEEDED",
     900: "#F5484A",
   },
   secondary: {
@@ -9,6 +10,7 @@ export const colors = {
     50: "#FAFAFA",
     100: "#F5F5F5",
     200: "#EEEEEE",
+    300: "#E0E0E0",
     500: "#9E9E9E",
     900: "#212121",
   },
@@ -18,8 +20,12 @@ export const colors = {
     3: "#262A35",
     4: "#35383F",
   },
+  alerts: {
+    buttonDisabled: "#C43A3B",
+  },
   others: {
     white: "#FFFFFF",
+    black: "#000000",
   },
 } as const;
 
@@ -55,7 +61,9 @@ export const spacing = {
 } as const;
 
 export const borderRadius = {
-  default: "32px",
+  default: "16px",
+  rounded: "100px",
+  button: "16px",
 } as const;
 
 export const lightTheme = {

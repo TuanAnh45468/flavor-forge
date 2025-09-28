@@ -5,6 +5,7 @@ import React from "react";
 interface ButtonProps {
   variant?: "primary" | "secondary" | "ghost" | "outline";
   size?: "sm" | "md" | "lg";
+  shape?: "default" | "rounded";
   children?: React.ReactNode;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
@@ -12,84 +13,106 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
-const variants = {
-  primary: (theme: any) => `
-      background-color: ${theme?.colors?.primary || "#F5484A"};
+const getVariantStyles = (variant: string, theme: any, disabled: boolean) => {
+  if (disabled) {
+    return `
+      background-color: ${theme?.colors?.alerts?.buttonDisabled || "#C43A3B"};
       color: ${theme?.colors?.others?.white || "#FFFFFF"};
-      border-color: ${theme?.colors?.primary || "#F5484A"};
+      border-color: ${theme?.colors?.alerts?.buttonDisabled || "#C43A3B"};
+      cursor: not-allowed;
+      opacity: 1;
+
+      &:hover {
+        background-color: ${theme?.colors?.alerts?.buttonDisabled || "#C43A3B"};
+        color: ${theme?.colors?.others?.white || "#FFFFFF"};
+      }
+    `;
+  }
+
+  const variants = {
+    primary: `
+      background-color: ${theme?.colors?.primary?.[900] || "#F5484A"};
+      color: ${theme?.colors?.others?.white || "#FFFFFF"};
+      border-color: ${theme?.colors?.primary?.[900] || "#F5484A"};
 
       &:hover {
         opacity: 0.9;
       }
     `,
+    secondary: `
+      background-color: ${theme?.colors?.primary?.[50] || "#FEEDED"};
+      color: ${theme?.colors?.primary?.[900] || "#F5484A"};
+      border-color: ${theme?.colors?.primary?.[50] || "#FEEDED"};
 
-  secondary: (theme: any) => `
-    background-color: transparent;
-    color: ${theme?.colors?.primary || "#F5484A"};
-    border-color: ${theme?.colors?.primary || "#F5484A"};
+      &:hover {
+        opacity: 0.9;
+      }
+    `,
+    ghost: `
+      background-color: transparent;
+      color: ${theme?.colors?.primary?.[900] || "#F5484A"};
+      border-color: transparent;
 
-    &:hover {
-      background-color: ${theme?.colors?.primary || "#F5484A"};
-      color: ${theme?.colors?.others?.white || "#FFFFFF"};
-    }
-  `,
-  ghost: (theme: any) => `
-    background-color: transparent;
-    color: ${theme?.colors?.primary || "#F5484A"};
-    border-color: transparent;
+      &:hover {
+        background-color: ${theme?.colors?.primary?.[900] || "#F5484A"}10;
+      }
+    `,
+    outline: `
+      background-color: transparent;
+      color: ${theme?.colors?.primary?.[900] || "#F5484A"};
+      border-color: ${theme?.colors?.greyscale?.[300] || "#E0E0E0"};
 
-    &:hover {
-      background-color: ${theme?.colors?.primary || "#F5484A"}10;
-    }
-  `,
-  outline: (theme: any) => `
-    background-color: transparent;
-    color: ${theme?.colors?.primary || "#F5484A"};
-    border-color: ${theme?.colors?.primary || "#F5484A"};
+      &:hover {
+        background-color: ${theme?.colors?.primary?.[900] || "#F5484A"}05;
+      }
+    `,
+  };
 
-    &:hover {
-      background-color: ${theme?.colors?.primary || "#F5484A"}05;
-      border-color: ${theme?.colors?.primary || "#F5484A"};
-    }
-  `,
+  return variants[variant as keyof typeof variants] || variants.primary;
 };
 
-const sizes = {
-  sm: (theme: any) => `
-    padding: ${theme?.spacing?.xs || "12px"} ${theme?.spacing?.sm || "16px"};
-    font-size: ${theme?.typography?.fontSize?.sm || "14px"};
-  `,
-  md: (theme: any) => `
-    padding: ${theme?.spacing?.sm || "16px"} ${theme?.spacing?.md || "24px"};
-    font-size: ${theme?.typography?.fontSize?.body || "16px"};
-  `,
-  lg: (theme: any) => `
-    padding: ${theme?.spacing?.md || "24px"} ${theme?.spacing?.lg || "40px"};
-    font-size: ${theme?.typography?.fontSize?.lg || "18px"};
-  `,
+const getSizeStyles = (size: string) => {
+  const sizes = {
+    sm: `
+      padding: 14px 16px;
+      font-size: 14px;
+    `,
+    md: `
+      padding: 18px 16px;
+      font-size: 16px;
+    `,
+    lg: `
+      padding: 22px 16px;
+      font-size: 18px;
+    `,
+  };
+
+  return sizes[size as keyof typeof sizes] || sizes.md;
 };
 
 const StyledButton = styled.button<ButtonProps>`
-  border-radius: ${(props) => props.theme.borderRadius?.default || 8};
+  border-radius: ${(props) =>
+    props.shape === "rounded"
+      ? props.theme.borderRadius?.rounded || "100px"
+      : props.theme.borderRadius?.button || "16px"};
   font-family: ${(props) =>
-    props.theme.typography?.fontFamily?.primary || "inherit"};
+    props.theme.typography?.fontFamily?.primary || "Urbanist, sans-serif"};
   font-weight: ${(props) => props.theme.typography?.fontWeight?.bold || 700};
-  border: 2px solid;
-  cursor: pointer;
+  border: 1px solid;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 16px;
 
-  ${(props) => sizes[props.size || "md"](props.theme)}
-  ${(props) => variants[props.variant || "primary"](props.theme)}
-`;
-
-const IconWrapper = styled.span<{ position: "left" | "right" }>`
-  display: inline-flex;
-  align-items: center;
-  margin-left: ${(props) => (props.position === "right" ? "8px" : "0")};
-  margin-right: ${(props) => (props.position === "left" ? "8px" : "0")};
+  ${(props) => getSizeStyles(props.size || "md")}
+  ${(props) =>
+    getVariantStyles(
+      props.variant || "primary",
+      props.theme,
+      props.disabled || false,
+    )}
 `;
 
 export const Button: React.FC<ButtonProps> = ({
@@ -100,9 +123,9 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <StyledButton {...props}>
-      {leftIcon && <IconWrapper position="left">{leftIcon}</IconWrapper>}
+      {leftIcon}
       {children}
-      {rightIcon && <IconWrapper position="right">{rightIcon}</IconWrapper>}
+      {rightIcon}
     </StyledButton>
   );
 };

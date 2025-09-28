@@ -1,6 +1,5 @@
-import type { Meta } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Button } from "./button";
-import { StoryObj } from "@storybook/nextjs-vite";
 
 const meta = {
   title: "Components/Button",
@@ -17,6 +16,13 @@ const meta = {
     size: {
       control: "select",
       options: ["sm", "md", "lg"],
+    },
+    shape: {
+      control: "select",
+      options: ["default", "rounded"],
+    },
+    disabled: {
+      control: "boolean",
     },
   },
 } satisfies Meta<typeof Button>;
@@ -88,5 +94,43 @@ export const WithBothIcons: Story = {
     children: "Both Icons",
     leftIcon: <span>⚙️</span>,
     rightIcon: <span>✓</span>,
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    variant: "primary",
+    children: "Disabled Button",
+    disabled: true,
+  },
+};
+
+export const Rounded: Story = {
+  args: {
+    variant: "primary",
+    shape: "rounded",
+    children: "Rounded Button",
+  },
+};
+
+export const SecondaryRounded: Story = {
+  args: {
+    variant: "secondary",
+    shape: "rounded",
+    children: "Secondary Rounded",
+  },
+};
+
+export const OutlineButton: Story = {
+  args: {
+    variant: "outline",
+    children: "Outline Button",
+  },
+};
+
+export const GhostButton: Story = {
+  args: {
+    variant: "ghost",
+    children: "Ghost Button",
   },
 };
