@@ -4,6 +4,7 @@ import { colors, typography, spacing, borderRadius } from "@/config/theme";
 declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
+      alerts: any;
       primary: string;
       secondary: string;
       background: string;
